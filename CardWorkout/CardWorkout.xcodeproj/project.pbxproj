@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D3DD0A929845CC800114CBA /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3DD0A829845CC800114CBA /* Deck.swift */; };
 		6DD36C94298111F2009A8C9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD36C93298111F2009A8C9C /* AppDelegate.swift */; };
 		6DD36C96298111F2009A8C9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD36C95298111F2009A8C9C /* SceneDelegate.swift */; };
 		6DD36C9B298111F2009A8C9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD36C99298111F2009A8C9C /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D3DD0A829845CC800114CBA /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		6DD36C90298111F2009A8C9C /* CardWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD36C93298111F2009A8C9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD36C95298111F2009A8C9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				6DD36C93298111F2009A8C9C /* AppDelegate.swift */,
 				6DD36C95298111F2009A8C9C /* SceneDelegate.swift */,
 				6DD36CA729811546009A8C9C /* CardSelectionVC.swift */,
+				6D3DD0A829845CC800114CBA /* Deck.swift */,
 				6DD36C99298111F2009A8C9C /* Main.storyboard */,
 				6DD36C9C298111F4009A8C9C /* Assets.xcassets */,
 				6DD36C9E298111F4009A8C9C /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D3DD0A929845CC800114CBA /* Deck.swift in Sources */,
 				6DD36C94298111F2009A8C9C /* AppDelegate.swift in Sources */,
 				6DD36C96298111F2009A8C9C /* SceneDelegate.swift in Sources */,
 				6DD36CA829811546009A8C9C /* CardSelectionVC.swift in Sources */,
