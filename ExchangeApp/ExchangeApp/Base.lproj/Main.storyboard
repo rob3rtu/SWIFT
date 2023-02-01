@@ -29,9 +29,6 @@
                                 <color key="textColor" systemColor="systemBlueColor"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="26"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="inputFieldAction:forEvent:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="qji-XX-13g"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ced-VE-Lqo">
                                 <rect key="frame" x="76" y="319" width="90" height="30"/>
@@ -78,15 +75,12 @@
                                     <action selector="convertButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FZJ-fj-7A5"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enN-ti-Ili">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enN-ti-Ili">
                                 <rect key="frame" x="96.666666666666686" y="571" width="200" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Avg-0a-UB7"/>
                                     <constraint firstAttribute="width" constant="200" id="i0z-ww-tQa"/>
                                 </constraints>
-                                <string key="text">Result:
-
-400$</string>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -138,6 +132,7 @@
                         <outlet property="inputField" destination="IBH-ip-MMh" id="E8k-3v-oZ0"/>
                         <outlet property="menuFrom" destination="Ced-VE-Lqo" id="mUu-Dh-hJ8"/>
                         <outlet property="menuTo" destination="RiG-PO-wUB" id="lWI-Qa-bfq"/>
+                        <outlet property="resultLabel" destination="enN-ti-Ili" id="uLJ-jB-4HB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
