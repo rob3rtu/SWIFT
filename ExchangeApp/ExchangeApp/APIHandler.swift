@@ -10,6 +10,7 @@ import UIKit
 class APIHandler {
     public var symbols: [String] = []
     public var convertedValue: Float = 0
+    private let topCurencies: [String] = ["RON", "USD", "EUR", "JPY", "GBT", "CHF", "AUD", "CAD"]
     
     init() {
         //make the request
@@ -36,7 +37,9 @@ class APIHandler {
             print(result.symbols.keys)
             
             for key in result.symbols.keys {
-                self.symbols.append(key)
+                if self.topCurencies.contains(key) {
+                    self.symbols.append(key)
+                }
             }
             
         }).resume()

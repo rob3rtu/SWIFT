@@ -39,8 +39,8 @@ class HomePageVC: UIViewController {
                 ])
         
         apiClient = APIHandler()
-//        print(apiClient?.symbols ?? "no symbols from apiClient")
-        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(menusInit), userInfo: nil, repeats: false)
+        
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(menusInit), userInfo: nil, repeats: false)
         
         let tapGestureBackground = UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped(_:)))
             self.view.addGestureRecognizer(tapGestureBackground)
@@ -92,7 +92,7 @@ class HomePageVC: UIViewController {
         
         apiClient?.convert(from: fromCurency, to: toCurency, amount: initial)
         
-        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(showConvertedValue), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(showConvertedValue), userInfo: nil, repeats: false)
     }
     
     @objc func showConvertedValue() {
