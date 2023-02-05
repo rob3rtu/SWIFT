@@ -21,39 +21,29 @@ class HomePageVC: UIViewController {
     var fromCurency: String     = ""
     var toCurency: String       = ""
     
-    var apiClient:APIHandler?
+    var apiClient:APIHandler    = APIHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        inputField.delegate = self
         inputField.addTarget(self, action: #selector(onChangeInput(_:)), for: .editingChanged)
-        resultLabel.text = "Result:\n\n\(converted)"
+        inputField.delegate     = self
+        resultLabel.text        = "Result:\n\n\(converted)"
         
-        menuTo.menu = UIMenu(children: [
-                    UIAction(title: "First", handler: toMenuAction),
-                    UIAction(title: "Second", handler: toMenuAction)
-                ])
-        menuFrom.menu = UIMenu(children: [
-                    UIAction(title: "First", handler: toMenuAction),
-                    UIAction(title: "Second", handler: toMenuAction),
-                ])
-        
-        apiClient = APIHandler()
-        
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(menusInit), userInfo: nil, repeats: false)
-        
+        Task {
+            await apiClient.getCurencies()
+            menusInit()
+        }
+                
         let tapGestureBackground = UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped(_:)))
             self.view.addGestureRecognizer(tapGestureBackground)
     }
     
-    @objc func menusInit() {
-        print(apiClient?.symbols ?? "")
+    func menusInit() {
+        menuTo.menu     = UIMenu(children: symbolToChildren(symbols: apiClient.symbols, type: "to"))
+        menuFrom.menu   = UIMenu(children: symbolToChildren(symbols: apiClient.symbols, type: "from"))
         
-        menuTo.menu = UIMenu(children: symbolToChildren(symbols: apiClient?.symbols ?? [], type: "to"))
-        menuFrom.menu = UIMenu(children: symbolToChildren(symbols: apiClient?.symbols ?? [], type: "from"))
-        
-        fromCurency = apiClient?.symbols.first ?? ""
-        toCurency = apiClient?.symbols.first ?? ""
+        fromCurency     = apiClient.symbols.first ?? ""
+        toCurency       = apiClient.symbols.first ?? ""
     }
     
     func symbolToChildren(symbols: [String], type: String) -> [UIAction] {
@@ -70,10 +60,6 @@ class HomePageVC: UIViewController {
         return rez
     }
     
-    @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
-        inputField.endEditing(true)
-    }
-    
     func toMenuAction(action: UIAction) {
         toCurency = action.title
     }
@@ -88,15 +74,14 @@ class HomePageVC: UIViewController {
     }
     
     @IBAction func convertButtonTapped(_ sender: UIButton) {
-        //converting the value
-        
-        apiClient?.convert(from: fromCurency, to: toCurency, amount: initial)
-        
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(showConvertedValue), userInfo: nil, repeats: false)
+        Task {
+            await apiClient.convert(from: fromCurency, to: toCurency, amount: initial)
+            resultLabel.text = "Result:\n\n\(apiClient.convertedValue)"
+        }
     }
     
-    @objc func showConvertedValue() {
-        resultLabel.text = "Result:\n\n\(apiClient?.convertedValue ?? 0)"
+    @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        inputField.endEditing(true)
     }
 }
 

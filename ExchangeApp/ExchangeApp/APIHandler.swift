@@ -8,33 +8,27 @@
 import UIKit
 
 class APIHandler {
-    public var symbols: [String] = []
-    public var convertedValue: Float = 0
-    private let topCurencies: [String] = ["RON", "USD", "EUR", "JPY", "GBT", "CHF", "AUD", "CAD"]
+    public var symbols: [String]        = []
+    public var convertedValue: Float    = 0
+    private let topCurencies: [String]  = ["RON", "USD", "EUR", "JPY", "GBT", "CHF", "AUD", "CAD"]
     
-    init() {
-        //make the request
-        let url = URL(string: "https://api.exchangerate.host/symbols")
-        URLSession.shared.dataTask(with: url!, completionHandler: {data, response, error in
-            guard let data = data, error == nil else {
-                print("Something went wrong!")
-                return
-            }
+    
+    public func getCurencies() async {
+        guard let url = URL(string: "https://api.exchangerate.host/symbols") else {
+            print("Error on URL")
+            return
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
             
             var result:Response?
-            
-            do{
-                result = try JSONDecoder().decode(Response.self, from: data)
-            }catch {
-                print("Error converting the result")
-            }
+            result = try JSONDecoder().decode(Response.self, from: data)
             
             guard let result = result else {
                 print("no result")
                 return
             }
-            
-            print(result.symbols.keys)
             
             for key in result.symbols.keys {
                 if self.topCurencies.contains(key) {
@@ -42,37 +36,35 @@ class APIHandler {
                 }
             }
             
-        }).resume()
+        }
+        catch {
+            print("Some error occurs in api getCurencies")
+        }
     }
     
-    public func convert(from: String, to: String, amount: Float) {
-        let url = URL(string: "https://api.exchangerate.host/convert?from=\(from)&to=\(to)&amount=\(amount)&source=bnro&places=1")
+    public func convert(from: String, to: String, amount: Float) async {
+        guard let url = URL(string: "https://api.exchangerate.host/convert?from=\(from)&to=\(to)&amount=\(amount)&source=bnro&places=1") else {
+            print("Error on url")
+            return
+        }
         
-        URLSession.shared.dataTask(with: url!, completionHandler: {data, response, error in
-            guard let data = data, error == nil else {
-                print("Error on conversion")
-                return
-            }
+        do {
+            let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
             
             var result: Conversion?
-            
-            do{
-                result = try JSONDecoder().decode(Conversion.self, from: data)
-            }catch {
-                print("Error converting the result")
-            }
+            result = try JSONDecoder().decode(Conversion.self, from: data)
             
             guard let result = result else {
                 print("no result")
                 return
             }
             
-            print("Converted value")
-            print(result.result)
-            
             self.convertedValue = result.result
             
-        }).resume()
+        }
+        catch {
+            print("Error on convert request")
+        }
     }
     
 }
