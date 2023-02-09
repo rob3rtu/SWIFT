@@ -9,17 +9,14 @@ import UIKit
 
 class HomePageVC: UIViewController {
     @IBOutlet var inputField: UITextField!
-    @IBOutlet var menuTo: UIButton!
-    @IBOutlet var menuFrom: UIButton!
     @IBOutlet var convertButton: UIButton!
     @IBOutlet var resultLabel: UILabel!
     
-
+    @IBOutlet var fromButton: UIButton!
+    @IBOutlet var toButton: UIButton!
+    
     var initial: Float          = 0
     var converted: Float        = 0
-    
-    var fromCurency: String     = ""
-    var toCurency: String       = ""
     
     var apiClient:APIHandler    = APIHandler()
     
@@ -31,42 +28,30 @@ class HomePageVC: UIViewController {
         
         Task {
             await apiClient.getCurencies()
-            menusInit()
+//            print(apiClient.curencies)
+            fromButton.setTitle(apiClient.fromCurency, for: .normal)
+            toButton.setTitle(apiClient.toCurency, for: .normal)
         }
                 
         let tapGestureBackground = UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped(_:)))
             self.view.addGestureRecognizer(tapGestureBackground)
     }
     
-    func menusInit() {
-        menuTo.menu     = UIMenu(children: symbolToChildren(symbols: apiClient.symbols, type: "to"))
-        menuFrom.menu   = UIMenu(children: symbolToChildren(symbols: apiClient.symbols, type: "from"))
-        
-        fromCurency     = apiClient.symbols.first ?? ""
-        toCurency       = apiClient.symbols.first ?? ""
+    func setFromCurency(value: String) {
+        fromButton.setTitle(value, for: .normal)
     }
     
-    func symbolToChildren(symbols: [String], type: String) -> [UIAction] {
-        var rez: [UIAction] = []
-        
-        for symbol in symbols.sorted() {
-            if type == "to" {
-                rez.append(UIAction(title: symbol, handler: toMenuAction))
-            } else {
-                rez.append(UIAction(title: symbol, handler: fromMenuAction))
-            }
-        }
-        
-        return rez
+    func setToCurency(value: String) {
+        toButton.setTitle(value, for: .normal)
     }
     
-    func toMenuAction(action: UIAction) {
-        toCurency = action.title
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! CurenciesVC
+        
+        destVC.apiClient = sender as? APIHandler
+        destVC.home = self
     }
     
-    func fromMenuAction(action: UIAction) {
-        fromCurency = action.title
-    }
     
     @objc func onChangeInput(_ textField: UITextField) {
         initial = Float(textField.text ?? "0") ?? 0
@@ -75,9 +60,19 @@ class HomePageVC: UIViewController {
     
     @IBAction func convertButtonTapped(_ sender: UIButton) {
         Task {
-            await apiClient.convert(from: fromCurency, to: toCurency, amount: initial)
+            await apiClient.convert(amount: initial)
             resultLabel.text = "Result:\n\n\(apiClient.convertedValue)"
         }
+    }
+    
+    @IBAction func fromButtonTapped(_ sender: UIButton) {
+        apiClient.turn = "from"
+        performSegue(withIdentifier: "toCurencies", sender: apiClient)
+    }
+    
+    @IBAction func toButtonTapped(_ sender: UIButton) {
+        apiClient.turn = "to"
+        performSegue(withIdentifier: "toCurencies", sender: apiClient)
     }
     
     @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {

@@ -8,9 +8,12 @@
 import UIKit
 
 class APIHandler {
-    public var symbols: [String]        = []
-    public var convertedValue: Float    = 0
-    private let topCurencies: [String]  = ["RON", "USD", "EUR", "JPY", "GBT", "CHF", "AUD", "CAD"]
+    public var fromCurency: String          = ""
+    public var toCurency: String            = ""
+    public var turn: String                 = ""
+    public var curencies: [symbol]          = []
+    public var convertedValue: Float        = 0
+    private let topCurencies: [String]      = ["RON", "USD", "EUR", "JPY", "GBT", "CHF", "AUD", "CAD"]
     
     
     public func getCurencies() async {
@@ -30,11 +33,13 @@ class APIHandler {
                 return
             }
             
-            for key in result.symbols.keys {
-                if self.topCurencies.contains(key) {
-                    self.symbols.append(key)
-                }
+            for symbol in result.symbols {
+                self.curencies.append(symbol.value)
             }
+            
+            curencies.sort(by: compareSymbols(a:b:))
+            fromCurency = curencies.first?.code ?? ""
+            toCurency = curencies.first?.code ?? ""
             
         }
         catch {
@@ -42,8 +47,12 @@ class APIHandler {
         }
     }
     
-    public func convert(from: String, to: String, amount: Float) async {
-        guard let url = URL(string: "https://api.exchangerate.host/convert?from=\(from)&to=\(to)&amount=\(amount)&source=bnro&places=1") else {
+    func compareSymbols(a: symbol, b: symbol) -> Bool {
+        return a.description < b.description
+    }
+    
+    public func convert(amount: Float) async {
+        guard let url = URL(string: "https://api.exchangerate.host/convert?from=\(fromCurency)&to=\(toCurency)&amount=\(amount)&source=bnro&places=1") else {
             print("Error on url")
             return
         }
