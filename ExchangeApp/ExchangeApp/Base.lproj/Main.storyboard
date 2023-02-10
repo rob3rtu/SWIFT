@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomePageVC" customModule="ExchangeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="500" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IBH-ip-MMh">
-                                <rect key="frame" x="177" y="259" width="200" height="50"/>
+                                <rect key="frame" x="177" y="303" width="200" height="50"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <color key="tintColor" systemColor="linkColor"/>
                                 <constraints>
@@ -30,7 +30,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvX-hJ-Uzv">
-                                <rect key="frame" x="239.66666666666666" y="333" width="84.333333333333343" height="75"/>
+                                <rect key="frame" x="239.66666666666666" y="377" width="84.333333333333343" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="2Pa-mn-h2O"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="gcG-el-Dtf"/>
@@ -45,7 +45,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enN-ti-Ili">
-                                <rect key="frame" x="96.666666666666686" y="483" width="200" height="100"/>
+                                <rect key="frame" x="96.666666666666686" y="518" width="200" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Avg-0a-UB7"/>
                                     <constraint firstAttribute="width" constant="200" id="i0z-ww-tQa"/>
@@ -55,7 +55,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FROM:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4f-Gw-Vzv">
-                                <rect key="frame" x="16" y="259" width="52" height="21"/>
+                                <rect key="frame" x="16" y="303" width="52" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="7r0-uv-Yzc"/>
                                     <constraint firstAttribute="width" constant="52" id="aVY-GR-LaA"/>
@@ -67,7 +67,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nU-oh-JKI">
-                                <rect key="frame" x="16" y="387" width="28" height="21"/>
+                                <rect key="frame" x="16" y="431" width="28" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="42F-GM-4fQ"/>
                                     <constraint firstAttribute="width" constant="28" id="hUQ-1H-zvm"/>
@@ -77,7 +77,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNS-RQ-MdA">
-                                <rect key="frame" x="16" y="288" width="75" height="35"/>
+                                <rect key="frame" x="16" y="332" width="75" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="BsI-dT-1sG"/>
                                     <constraint firstAttribute="height" constant="35" id="zQd-gm-7ai"/>
@@ -89,7 +89,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNb-Ma-1J6">
-                                <rect key="frame" x="16" y="344" width="75" height="35"/>
+                                <rect key="frame" x="16" y="388" width="75" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="DuH-eq-OLS"/>
                                     <constraint firstAttribute="width" constant="75" id="ZAv-M7-eIS"/>
@@ -159,11 +159,11 @@
             <objects>
                 <viewController id="xLd-d0-tWv" customClass="CurenciesVC" customModule="ExchangeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PP5-G2-FCG">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6xE-OB-LjV">
-                                <rect key="frame" x="16" y="59" width="361" height="724"/>
+                                <rect key="frame" x="16" y="103" width="361" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="curencyCell" id="Rgw-lb-H6C" customClass="CustomCell" customModule="ExchangeApp" customModuleProvider="target">
@@ -221,18 +221,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LWq-SD-h6r"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="goBack" id="a1S-TC-aYj"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20F-1q-Gcf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1910.6870229007632" y="30.985915492957748"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="a1S-TC-aYj"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

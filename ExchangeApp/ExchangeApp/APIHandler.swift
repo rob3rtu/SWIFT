@@ -34,7 +34,9 @@ class APIHandler {
             }
             
             for symbol in result.symbols {
-                self.curencies.append(symbol.value)
+                if topCurencies.contains(symbol.key) {
+                    self.curencies.append(symbol.value)
+                }
             }
             
             curencies.sort(by: compareSymbols(a:b:))
@@ -52,12 +54,13 @@ class APIHandler {
     }
     
     public func convert(amount: Float) async {
-        guard let url = URL(string: "https://api.exchangerate.host/convert?from=\(fromCurency)&to=\(toCurency)&amount=\(amount)&source=bnro&places=1") else {
+        guard let url = URL(string: "https://api.exchangerate.host/convert?from=\(fromCurency)&to=\(toCurency)&amount=\(amount)&places=1") else {
             print("Error on url")
             return
         }
         
         do {
+            print(url)
             let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
             
             var result: Conversion?

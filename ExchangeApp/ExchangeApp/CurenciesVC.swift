@@ -15,19 +15,6 @@ class CurenciesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let dest = segue.destination as! HomePageVC
-        
-        if apiClient?.turn == "from" {
-            home?.setFromCurency(value: sender as? String ?? "")
-            apiClient?.fromCurency = sender as? String ?? ""
-        } else {
-            home?.setToCurency(value: sender as? String ?? "")
-            apiClient?.toCurency = sender as? String ?? ""
-        }
-    }
-
 }
 
 extension CurenciesVC: UITableViewDelegate, UITableViewDataSource {
@@ -48,6 +35,14 @@ extension CurenciesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "goBack", sender: apiClient?.curencies[indexPath.row].code)
+        if apiClient?.turn == "from" {
+                    home?.setFromCurency(value: apiClient?.curencies[indexPath.row].code ?? "?")
+                    apiClient?.fromCurency = apiClient?.curencies[indexPath.row].code ?? "?"
+                } else {
+                    home?.setToCurency(value: apiClient?.curencies[indexPath.row].code ?? "?")
+                    apiClient?.toCurency = apiClient?.curencies[indexPath.row].code ?? "?"
+        }
+        
+        _ = navigationController?.popViewController(animated: true)
     }
 }
