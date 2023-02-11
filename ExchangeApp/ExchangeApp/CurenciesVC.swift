@@ -9,17 +9,33 @@ import UIKit
 
 class CurenciesVC: UIViewController {
     
+    @IBOutlet var searchBar: UITextField!
+    @IBOutlet var curenciesTable: UITableView!
+    
     var apiClient: APIHandler?
     var home:HomePageVC?
+    
+    var filterCurencies: [symbol] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        filterCurencies = apiClient?.curencies ?? []
+        curenciesTable.dataSource = self
+    }
+    
+    @IBAction func searchOnChange(_ sender: UITextField) {
+        print(sender.text ?? "?")
+        filterCurencies = sender.text == "" ? apiClient?.curencies ?? [] :  apiClient?.curencies.filter {
+            $0.code.lowercased().contains(sender.text?.lowercased() ?? "") || $0.description.lowercased().contains(sender.text?.lowercased() ?? "")
+        } ?? []
+        
+        curenciesTable.reloadData()
     }
 }
 
 extension CurenciesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return apiClient?.curencies.count ?? 0
+        return filterCurencies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -28,19 +44,19 @@ extension CurenciesVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.symbol?.text = apiClient?.curencies[indexPath.row].code ?? "?"
-        cell.name?.text = apiClient?.curencies[indexPath.row].description ?? "??"
+        cell.symbol?.text = filterCurencies[indexPath.row].code
+        cell.name?.text = filterCurencies[indexPath.row].description
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if apiClient?.turn == "from" {
-                    home?.setFromCurency(value: apiClient?.curencies[indexPath.row].code ?? "?")
-                    apiClient?.fromCurency = apiClient?.curencies[indexPath.row].code ?? "?"
+                    home?.setFromCurency(value: filterCurencies[indexPath.row].code)
+                    apiClient?.fromCurency = filterCurencies[indexPath.row].code
                 } else {
-                    home?.setToCurency(value: apiClient?.curencies[indexPath.row].code ?? "?")
-                    apiClient?.toCurency = apiClient?.curencies[indexPath.row].code ?? "?"
+                    home?.setToCurency(value: filterCurencies[indexPath.row].code)
+                    apiClient?.toCurency = filterCurencies[indexPath.row].code
         }
         
         _ = navigationController?.popViewController(animated: true)

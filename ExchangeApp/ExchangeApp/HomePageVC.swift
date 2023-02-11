@@ -51,8 +51,7 @@ class HomePageVC: UIViewController {
         destVC.apiClient = sender as? APIHandler
         destVC.home = self
     }
-    
-    
+
     @objc func onChangeInput(_ textField: UITextField) {
         initial = Float(textField.text ?? "0") ?? 0
         print(initial)
@@ -60,7 +59,12 @@ class HomePageVC: UIViewController {
     
     @IBAction func convertButtonTapped(_ sender: UIButton) {
         Task {
-            await apiClient.convert(amount: initial)
+            let res = await apiClient.convert(amount: initial)
+            
+            if res == 0 {
+                showErrorToast(message: "Something went wrong!")
+            }
+            
             resultLabel.text = "Result:\n\n\(apiClient.convertedValue)"
         }
     }
@@ -77,6 +81,13 @@ class HomePageVC: UIViewController {
     
     @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
         inputField.endEditing(true)
+    }
+    
+    func showErrorToast(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 

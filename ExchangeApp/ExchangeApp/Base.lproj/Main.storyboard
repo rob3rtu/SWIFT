@@ -164,7 +164,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6xE-OB-LjV">
-                                <rect key="frame" x="16" y="103" width="361" height="715"/>
+                                <rect key="frame" x="16" y="153" width="361" height="665"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="curencyCell" id="Rgw-lb-H6C" customClass="CustomCell" customModule="ExchangeApp" customModuleProvider="target">
@@ -207,17 +207,33 @@
                                     <outlet property="delegate" destination="xLd-d0-tWv" id="epU-00-drP"/>
                                 </connections>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" minimumFontSize="17" background="magnifyingglass" catalog="system" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="vWS-U8-z4X">
+                                <rect key="frame" x="15" y="108" width="363" height="34"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="searchOnChange:" destination="xLd-d0-tWv" eventType="editingChanged" id="mta-bk-Myq"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mmC-Ve-aJa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="vWS-U8-z4X" firstAttribute="leading" secondItem="mmC-Ve-aJa" secondAttribute="leading" constant="15" id="Ad1-Tf-wAH"/>
+                            <constraint firstItem="vWS-U8-z4X" firstAttribute="top" secondItem="mmC-Ve-aJa" secondAttribute="top" constant="5" id="RzD-ue-02b"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6xE-OB-LjV" secondAttribute="trailing" id="dV9-AR-591"/>
+                            <constraint firstItem="mmC-Ve-aJa" firstAttribute="trailing" secondItem="vWS-U8-z4X" secondAttribute="trailing" constant="15" id="e9W-xl-fzs"/>
+                            <constraint firstItem="6xE-OB-LjV" firstAttribute="top" secondItem="vWS-U8-z4X" secondAttribute="bottom" constant="11" id="fWq-G1-Gz5"/>
                             <constraint firstAttribute="bottomMargin" secondItem="6xE-OB-LjV" secondAttribute="bottom" id="hgI-Dh-SEc"/>
                             <constraint firstItem="6xE-OB-LjV" firstAttribute="leading" secondItem="PP5-G2-FCG" secondAttribute="leadingMargin" id="pcp-Fm-YWn"/>
-                            <constraint firstItem="6xE-OB-LjV" firstAttribute="top" secondItem="PP5-G2-FCG" secondAttribute="topMargin" id="z45-WD-u5w"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LWq-SD-h6r"/>
+                    <connections>
+                        <outlet property="curenciesTable" destination="6xE-OB-LjV" id="1ux-9W-yrk"/>
+                        <outlet property="searchBar" destination="vWS-U8-z4X" id="h4p-JZ-OVa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20F-1q-Gcf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -225,11 +241,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

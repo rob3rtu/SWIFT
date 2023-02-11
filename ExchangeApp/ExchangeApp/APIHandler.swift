@@ -13,7 +13,7 @@ class APIHandler {
     public var turn: String                 = ""
     public var curencies: [symbol]          = []
     public var convertedValue: Float        = 0
-    private let topCurencies: [String]      = ["RON", "USD", "EUR", "JPY", "GBT", "CHF", "AUD", "CAD"]
+    
     
     
     public func getCurencies() async {
@@ -34,9 +34,7 @@ class APIHandler {
             }
             
             for symbol in result.symbols {
-                if topCurencies.contains(symbol.key) {
                     self.curencies.append(symbol.value)
-                }
             }
             
             curencies.sort(by: compareSymbols(a:b:))
@@ -53,10 +51,10 @@ class APIHandler {
         return a.description < b.description
     }
     
-    public func convert(amount: Float) async {
+    public func convert(amount: Float) async -> Int {
         guard let url = URL(string: "https://api.exchangerate.host/convert?from=\(fromCurency)&to=\(toCurency)&amount=\(amount)&places=1") else {
             print("Error on url")
-            return
+            return 0
         }
         
         do {
@@ -68,14 +66,15 @@ class APIHandler {
             
             guard let result = result else {
                 print("no result")
-                return
+                return 0
             }
             
             self.convertedValue = result.result
-            
+            return 1
         }
         catch {
             print("Error on convert request")
+            return 0
         }
     }
     
