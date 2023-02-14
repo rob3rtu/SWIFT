@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--To Do-->
+        <!--To Do List-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
@@ -52,6 +52,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="+" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="60"/>
+                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="4" bottom="6" trailing="0.0"/>
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
                                 </buttonConfiguration>
@@ -71,7 +72,7 @@
                             <constraint firstAttribute="bottom" secondItem="n2W-rG-1BR" secondAttribute="bottom" constant="23" id="qpi-uD-Gi6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="To Do" id="0wa-o4-Om2"/>
+                    <navigationItem key="navigationItem" title="To Do List" id="0wa-o4-Om2"/>
                     <connections>
                         <outlet property="addTaskButton" destination="n2W-rG-1BR" id="0fC-FX-exb"/>
                         <outlet property="taskTable" destination="RFJ-Hn-OEo" id="Uxt-yn-MmE"/>
@@ -118,13 +119,13 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waa-bf-qkG">
-                                <rect key="frame" x="169" y="209" width="55" height="35"/>
+                                <rect key="frame" x="55" y="209" width="298" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="4xW-4e-DFM"/>
-                                    <constraint firstAttribute="width" constant="55" id="hsm-dX-YeG"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="qtv-Cn-wC8"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="298" id="z8a-Lx-d2G"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Tap anywhere to add task"/>
                                 <connections>
                                     <action selector="addButtonTapped:" destination="DBg-Yh-4cf" eventType="touchUpInside" id="a9E-8d-ZxN"/>
                                 </connections>
@@ -136,8 +137,8 @@
                             <constraint firstItem="tTX-VN-n4e" firstAttribute="leading" secondItem="gTF-t9-FqU" secondAttribute="leading" constant="5" id="6bh-NS-GJe"/>
                             <constraint firstItem="waa-bf-qkG" firstAttribute="top" secondItem="Tt2-2Y-FKP" secondAttribute="bottom" constant="100" id="7GB-Ph-5z1"/>
                             <constraint firstItem="Tt2-2Y-FKP" firstAttribute="top" secondItem="tTX-VN-n4e" secondAttribute="top" constant="54" id="CL4-G2-wVA"/>
+                            <constraint firstItem="waa-bf-qkG" firstAttribute="centerX" secondItem="Tt2-2Y-FKP" secondAttribute="centerX" id="HGT-uI-aBE"/>
                             <constraint firstItem="0dF-vO-LTE" firstAttribute="trailing" secondItem="Tt2-2Y-FKP" secondAttribute="trailing" constant="10" id="Ri7-1k-fWI"/>
-                            <constraint firstItem="waa-bf-qkG" firstAttribute="centerX" secondItem="gTF-t9-FqU" secondAttribute="centerX" id="ccO-Ej-fzM"/>
                             <constraint firstItem="tTX-VN-n4e" firstAttribute="top" secondItem="gTF-t9-FqU" secondAttribute="top" constant="5" id="hhq-Z1-pBx"/>
                             <constraint firstItem="Tt2-2Y-FKP" firstAttribute="leading" secondItem="0dF-vO-LTE" secondAttribute="leading" constant="25" id="nU0-zI-P0R"/>
                         </constraints>
@@ -148,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QeK-MG-d5Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1903" y="5"/>
+            <point key="canvasLocation" x="1901.5267175572519" y="4.9295774647887329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gaY-nj-xQJ">

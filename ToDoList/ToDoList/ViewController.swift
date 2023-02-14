@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let storage = UserDefaults.standard
+    
     public var taskList: [String] = ["Demonstration task"]
 
     @IBOutlet var addTaskButton: UIButton!
@@ -16,6 +18,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let tasks = storage.object(forKey: "list") as? [String] {
+            taskList = tasks
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,6 +56,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             taskList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            storage.set(taskList, forKey: "list")
         }
     }
     

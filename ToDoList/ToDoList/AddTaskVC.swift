@@ -16,6 +16,20 @@ class AddTaskVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         taskInput.becomeFirstResponder()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+           view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        if let task = taskInput.text {
+            if task != "" {
+                home?.taskList.append(task)
+                home?.taskTable.reloadData()
+                home?.storage.set(home?.taskList, forKey: "list")
+                dismiss(animated: true)
+            }
+        }
     }
     
     @IBAction func taskInputChange(_ sender: UITextField) {
@@ -34,8 +48,11 @@ class AddTaskVC: UIViewController {
             if task != "" {
                 home?.taskList.append(task)
                 home?.taskTable.reloadData()
+                home?.storage.set(home?.taskList, forKey: "list")
                 dismiss(animated: true)
             }
         }
     }
+    
+    
 }
